@@ -12,7 +12,7 @@ const firebaseConfig = {
     measurementId: "G-P2REFRFREV"
 };
 
-let App;
+let app;
 
 if (firebase.apps.length === 0) {
     app = firebase.initializeApp(firebaseConfig);
