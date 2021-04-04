@@ -18,9 +18,13 @@ const LoginScreen = ({ navigation }) => {
         });
 
         return unsubscribe;
-    }, [])
+    }, [navigation])
 
-    const signIn = () => { };
+    const signIn = () => {
+        auth
+            .signInWithEmailAndPassword(email, password)
+            .catch((error) => alert(error));
+    };
 
     return (
         <KeyboardAvoidingView behavior='padding' style={styles.container}>
@@ -33,7 +37,7 @@ const LoginScreen = ({ navigation }) => {
             />
             <View style={styles.inputContainer}>
                 <Input placeholder="Email" autoFocus type="email" value={email} onChangeText={(text) => setEmail(text)} />
-                <Input placeholder="Password" secureTextEntry type="password" value={password} onChangeText={(text) => setPassword(text)} />
+                <Input placeholder="Password" secureTextEntry type="password" value={password} onChangeText={(text) => setPassword(text)} onSubmitEditing={signIn} />
             </View>
 
             <Button containerStyle={styles.button} onPress={signIn} title='Login' />
